@@ -15,10 +15,10 @@
 
 If you are using a Mac follow the instructions [here](https://docs.docker.com/installation/mac/) to setup a docker environment.
 
-- Install [fig](http://orchardup.github.io/fig/install.html)
+- Install [Docker-Compose](https://docs.docker.com/compose/install/)
 
 - Start the test environment
-    - `fig up`
+    - `docker-compose up`
 - Start a kafka shell
     - `./start-kafka-shell.sh <Docker Ip> <Zookeeper>`, example `./start-kafka-shell.sh 192.168.59.103:9092 192.168.59.103:2181`
 - From within the shell, create a topic
