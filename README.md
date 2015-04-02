@@ -17,12 +17,14 @@ If you are using a Mac follow the instructions [here](https://docs.docker.com/in
 
 - Install [Docker-Compose](https://docs.docker.com/compose/install/)
 
-- Start the test environment
+- Start the test environment  
     - `docker-compose up`  
-- Start a kafka shell
+- Start a kafka shell  
     - `./scripts/shells/start-kafka-shell.sh`  
 - From within the shell, create a topic
-    - `$KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper $ZK --topic replicated --replication-factor 2 --partitions 3`
+    - `$KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper $ZK --topic replicated --replication-factor 2 --partitions 3`  
+- Describe the topic configuration  
+    - `$KAFKA_HOME/bin/kafka-topics.sh --zookeeper $ZK --describe replicated`  
 
 - For more details and troubleshooting see [https://github.com/wurstmeister/kafka-docker](https://github.com/wurstmeister/kafka-docker)
 
