@@ -20,7 +20,7 @@ If you are using a Mac follow the instructions [here](https://docs.docker.com/in
 - Start the test environment
     - `docker-compose up`  
 - Start a kafka shell
-    - `./start-kafka-shell.sh`  
+    - `./scripts/shells/start-kafka-shell.sh`  
 - From within the shell, create a topic
     - `$KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper $ZK --topic replicated --replication-factor 2 --partitions 3`
 
@@ -46,10 +46,18 @@ zookeeper_1 | 2015-02-19 11:28:58,002 [myid:] - INFO  [ProcessThread(sid:0 cport
 
 - to read  last received message by worker: `$ curl http://localhost:3001/`
 
-- to perform apache benchmark `./benchmark.sh`
+- to perform apache benchmark `./scripts/tests/benchmark.sh`
 
+## Checking Data
+
+- to open the running mongo container: `./scripts/shells/start-mongo-shell.sh`  
+
+- point to the kafka db: `use kafka`
+
+- list the documents: `db.kafka.find().pretty()`
 
 ## References
 
 - [wurstmeister/storm-kafka-0.8-plus-test](https://github.com/wurstmeister/storm-kafka-0.8-plus-test)
 - [SOHU-Co/kafka-node](https://github.com/SOHU-Co/kafka-node/)
+- [Running Multibroker Clusters on a Single Node](http://www.michael-noll.com/blog/2013/03/13/running-a-multi-broker-apache-kafka-cluster-on-a-single-node/)
