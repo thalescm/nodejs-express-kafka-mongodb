@@ -52,6 +52,18 @@ app.get('/', function(req, res) {
   });
 })
 
+app.get('/partitions', function (req, res) {
+  db.collection('kafka').find({_id:  /partition/ }, function (err, data) {
+    if(err) {
+      res.send(500, err);
+    } else if (!data) {
+      res.send(404, 'nothing found...');
+    } else {
+      res.json(200, data);
+    }
+  });
+})
+
 
 // Kafka events
 producer.on('ready', function () {
