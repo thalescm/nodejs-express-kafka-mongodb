@@ -18,11 +18,11 @@ If you are using a Mac follow the instructions [here](https://docs.docker.com/in
 - Install [Docker-Compose](https://docs.docker.com/compose/install/)
 
 - Start the test environment
-    - `docker-compose up`
+    - `docker-compose up`  
 - Start a kafka shell
-    - `./start-kafka-shell.sh  
+    - `./start-kafka-shell.sh`  
 - From within the shell, create a topic
-    - `$KAFKA_HOME/bin/kafka-topics.sh --create --topic replicated --partitions 2 --zookeeper $ZK --replication-factor 2 --partitions 3`
+    - `$KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper $ZK --topic replicated --replication-factor 2 --partitions 3`
 
 - For more details and troubleshooting see [https://github.com/wurstmeister/kafka-docker](https://github.com/wurstmeister/kafka-docker)
 
@@ -46,7 +46,7 @@ zookeeper_1 | 2015-02-19 11:28:58,002 [myid:] - INFO  [ProcessThread(sid:0 cport
 
 - to read  last received message by worker: `$ curl http://localhost:3001/`
 
-- to perform apache benchmark `$ ab -n 1000 -c 5 -T 'application/x-www-form-urlencoded' -p post.txt http://localhost:3001/`
+- to perform apache benchmark `./benchmark.sh`
 
 
 ## References
