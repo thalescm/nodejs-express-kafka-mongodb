@@ -46,9 +46,30 @@ consumer.on('message', function (message) {
     upsert: true
   }, function(err, data) {
     if(err) {
-      console.log('MONGO error updating document: ' + err);
+      console.log('MONGO error updating last message: ' + err);
     } else {
-      console.log('MONGO updating document OK:' + message.value);
+      console.log('MONGO updating last message:' + message.value);
+    }
+  });
+
+  // Updated respective partition count;
+  var partition = 'partition_' + message.partition;
+  db.collection('kafka').update(
+  {
+    _id: partition //always overrite the same doc just for illustration
+  },
+  {
+    '$inc': {
+      count: 1
+    }
+  },
+  {
+    upsert: true
+  }, function(err, data) {
+    if(err) {
+      console.log('MONGO error updating partition_' + message.partition + ' count: ' + err);
+    } else {
+      console.log('MONGO updating partition count for partition: ' + message.partition);
     }
   });
 });

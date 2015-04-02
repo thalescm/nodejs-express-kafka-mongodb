@@ -20,9 +20,9 @@ If you are using a Mac follow the instructions [here](https://docs.docker.com/in
 - Start the test environment
     - `docker-compose up`
 - Start a kafka shell
-    - `./start-kafka-shell.sh <Docker Ip> <Zookeeper>`, example `./start-kafka-shell.sh 192.168.59.103:9092 192.168.59.103:2181`
+    - `./start-kafka-shell.sh  
 - From within the shell, create a topic
-    - `$KAFKA_HOME/bin/kafka-topics.sh --create --topic my-node-topic --partitions 2 --zookeeper $ZK --replication-factor 1`
+    - `$KAFKA_HOME/bin/kafka-topics.sh --create --topic replicated --partitions 2 --zookeeper $ZK --replication-factor 2 --partitions 3`
 
 - For more details and troubleshooting see [https://github.com/wurstmeister/kafka-docker](https://github.com/wurstmeister/kafka-docker)
 

@@ -41,7 +41,7 @@ app.post('/', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-  db.collection('kafka').find({}, function(err, data) {
+  db.collection('kafka').find({_id: 123456}, function(err, data) {
     if(err) {
       res.send(500, err);
     } else if (!data) {
