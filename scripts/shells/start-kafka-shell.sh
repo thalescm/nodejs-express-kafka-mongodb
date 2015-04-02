@@ -37,6 +37,4 @@ while [ "$1" != "" ]; do
   shift
 done
 
-
-ab -n $n_requests -c $n_c_requests -T 'application/x-www-form-urlencoded' -p post.txt http://localhost:3001/
 docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -e HOST_IP=$host_ip -e ZK=$zk_ip -i -t wurstmeister/kafka:0.8.2.0 /bin/bash
