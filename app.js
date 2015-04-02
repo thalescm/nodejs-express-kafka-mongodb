@@ -20,10 +20,13 @@ app.post('/', function(req, res) {
   var timestamp = moment().unix();
 
   // sends value to kafka
-  var topicMessage = { topic: 'my-node-topic', messages: [
-    // all messages must be string :S
-    JSON.stringify({ timestamp: timestamp, rnd: Math.random() })
-  ] };
+  var topicMessage = {
+    topic: 'replicated',
+    messages: [
+      // all messages must be string :S
+      JSON.stringify({ timestamp: timestamp, rnd: Math.random() })
+    ]
+  };
 
   var payload = [ topicMessage ];
 

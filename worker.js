@@ -15,7 +15,7 @@ var moment = require('moment-timezone'),
 var consumer = new HighLevelConsumer(
     client,
     [
-        { topic: 'my-node-topic' }
+        { topic: 'replicated' }
     ],
     {
       groupId: 'worker.js' // this identifies consumer and make the offset consumption scoped to this key

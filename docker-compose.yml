@@ -2,7 +2,7 @@ zookeeper:
   image: wurstmeister/zookeeper
   ports:
     - "2181:2181"
-kafka:
+kafka1:
   image: wurstmeister/kafka:0.8.2.0
   ports:
     - "9092:9092"
@@ -10,6 +10,29 @@ kafka:
     - zookeeper:zk
   environment:
     KAFKA_ADVERTISED_HOST_NAME: 192.168.59.103
+    KAFKA_AUTO_LEADER_REBALANCE_ENABLE: 'true'
+  volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+kafka2:
+  image: wurstmeister/kafka:0.8.2.0
+  ports:
+    - "9093:9092"
+  links:
+    - zookeeper:zk
+  environment:
+    KAFKA_ADVERTISED_HOST_NAME: 192.168.59.103
+    KAFKA_AUTO_LEADER_REBALANCE_ENABLE: 'true'
+  volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+kafka3:
+  image: wurstmeister/kafka:0.8.2.0
+  ports:
+    - "9094:9092"
+  links:
+    - zookeeper:zk
+  environment:
+    KAFKA_ADVERTISED_HOST_NAME: 192.168.59.103
+    KAFKA_AUTO_LEADER_REBALANCE_ENABLE: 'true'
   volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 mongodb:
