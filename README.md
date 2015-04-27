@@ -63,3 +63,8 @@ zookeeper_1 | 2015-02-19 11:28:58,002 [myid:] - INFO  [ProcessThread(sid:0 cport
 - [wurstmeister/storm-kafka-0.8-plus-test](https://github.com/wurstmeister/storm-kafka-0.8-plus-test)
 - [SOHU-Co/kafka-node](https://github.com/SOHU-Co/kafka-node/)
 - [Running Multibroker Clusters on a Single Node](http://www.michael-noll.com/blog/2013/03/13/running-a-multi-broker-apache-kafka-cluster-on-a-single-node/)
+
+## Possible backupt Strategies
+
+Take a better look at [SECOR - Persisting kafka logs to Amazon S3](https://github.com/pinterest/secor)
+[This conversation](http://grokbase.com/t/kafka/users/136eqq0xdp/0-8-backup-strategy-anyone) also seems to be good
