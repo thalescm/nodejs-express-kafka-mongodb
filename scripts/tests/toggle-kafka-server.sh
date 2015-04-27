@@ -69,6 +69,7 @@ serverName="kafka$server"
 
 if [ "$pause" = true ] ; then
   pause_id=$(docker ps | grep $serverName | cut -f 1 -d " ")
+  docker pause $pause_id
   echo "Paused Container $(docker pause $pause_id): $serverName"
 fi
 

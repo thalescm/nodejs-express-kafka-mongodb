@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "kafka-node": "0.2.19",
+    "kafka-node": "0.2.26",
     "express": "4.0.0",
     "moment-timezone": "0.3.0",
     "mongojs": "0.18.0"

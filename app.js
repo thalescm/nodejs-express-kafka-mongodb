@@ -8,7 +8,7 @@ var express = require('express'),
 
     // kafka
     kafka = require('kafka-node'),
-    client = new kafka.Client(process.env.KAFKA_URL || '192.168.59.103:2181/', process.env.KAFKA_PRODUCER_ID || 'kafka-node-producer', {}),
+    client = new kafka.Client(process.env.KAFKA_URL || '192.168.59.103:2181,192.168.59.103:2182', process.env.KAFKA_PRODUCER_ID || 'kafka-node-producer', {}),
     HighLevelProducer = kafka.HighLevelProducer,
     producer = new HighLevelProducer(client);
 
@@ -21,7 +21,7 @@ app.post('/', function(req, res) {
 
   // sends value to kafka
   var topicMessage = {
-    topic: 'replicated',
+    topic: 'topic',
     messages: [
       // all messages must be string :S
       JSON.stringify({ timestamp: timestamp, rnd: Math.random() })
