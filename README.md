@@ -68,3 +68,7 @@ zookeeper_1 | 2015-02-19 11:28:58,002 [myid:] - INFO  [ProcessThread(sid:0 cport
 
 Take a better look at [SECOR - Persisting kafka logs to Amazon S3](https://github.com/pinterest/secor)
 [This conversation](http://grokbase.com/t/kafka/users/136eqq0xdp/0-8-backup-strategy-anyone) also seems to be good
+
+## Having Trouble?
+
+It's always a good idea to look at the [Kafka FAQ](https://cwiki.apache.org/confluence/display/KAFKA/FAQ)
