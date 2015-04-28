@@ -11,7 +11,7 @@ kafka1:
   ports:
     - "9091:9092"
   links:
-    - zookeeper1
+    - zookeeper1:zk
     # - zookeeper2
   environment:
     KAFKA_ADVERTISED_HOST_NAME: 192.168.59.103
@@ -24,7 +24,7 @@ kafka2:
   ports:
     - "9093:9092"
   links:
-    - zookeeper1
+    - zookeeper1:zk
     # - zookeeper2
   environment:
     KAFKA_ADVERTISED_HOST_NAME: 192.168.59.103
@@ -37,7 +37,7 @@ kafka3:
   ports:
     - "9094:9092"
   links:
-    - zookeeper1
+    - zookeeper1:zk
     # - zookeeper2
   environment:
     KAFKA_ADVERTISED_HOST_NAME: 192.168.59.103
