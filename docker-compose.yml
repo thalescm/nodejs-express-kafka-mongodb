@@ -2,21 +2,21 @@ zookeeper1:
   image: wurstmeister/zookeeper
   ports:
     - "2181:2181"
-zookeeper2:
-  image: wurstmeister/zookeeper
-  ports:
-    - "2182:2181"
+# zookeeper2:
+#   image: wurstmeister/zookeeper
+#   ports:
+#     - "2182:2181"
 kafka1:
   image: wurstmeister/kafka:0.8.2.1
   ports:
     - "9091:9092"
   links:
     - zookeeper1
-    - zookeeper2
+    # - zookeeper2
   environment:
     KAFKA_ADVERTISED_HOST_NAME: 192.168.59.103
     KAFKA_AUTO_LEADER_REBALANCE_ENABLE: 'true'
-    KAFKA_ZOOKEEPER_CONNECT: 192.168.59.103:2181,192.168.59.103:2182
+    KAFKA_ZOOKEEPER_CONNECT: 192.168.59.103:2181 #,192.168.59.103:2182
   volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 kafka2:
@@ -25,11 +25,11 @@ kafka2:
     - "9093:9092"
   links:
     - zookeeper1
-    - zookeeper2
+    # - zookeeper2
   environment:
     KAFKA_ADVERTISED_HOST_NAME: 192.168.59.103
     KAFKA_AUTO_LEADER_REBALANCE_ENABLE: 'true'
-    KAFKA_ZOOKEEPER_CONNECT: 192.168.59.103:2181,192.168.59.103:2182
+    KAFKA_ZOOKEEPER_CONNECT: 192.168.59.103:2181 #,192.168.59.103:2182
   volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 kafka3:
@@ -38,11 +38,11 @@ kafka3:
     - "9094:9092"
   links:
     - zookeeper1
-    - zookeeper2
+    # - zookeeper2
   environment:
     KAFKA_ADVERTISED_HOST_NAME: 192.168.59.103
     KAFKA_AUTO_LEADER_REBALANCE_ENABLE: 'true'
-    KAFKA_ZOOKEEPER_CONNECT: 192.168.59.103:2181,192.168.59.103:2182
+    KAFKA_ZOOKEEPER_CONNECT: 192.168.59.103:2181 #,192.168.59.103:2182
   volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 manager:
@@ -54,7 +54,7 @@ manager:
     - kafka2
     - kafka3
   environment:
-    ZK_HOSTS: 192.168.59.103:2181,192.168.59.103:2182
+    ZK_HOSTS: 192.168.59.103:2181 #,192.168.59.103:2182
 mongodb:
   image: mongo:2.6.7
   ports:
