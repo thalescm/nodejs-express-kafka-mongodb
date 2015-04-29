@@ -71,6 +71,7 @@ INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@494] - Processed sess
 - to send messages: `$ curl -X POST http://localhost:3001/` or `$ curl -X POST http://127.0.0.1:3001/` if curl is having any [trouble with localhost](http://superuser.com/questions/830920/curl-local-host-names-on-mac-os-x-yosemite)
 
 - to perform apache benchmark `./scripts/tests/benchmark.sh`
+
 -----
 ## Seeing Data
 
