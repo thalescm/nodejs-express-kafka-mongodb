@@ -1,13 +1,38 @@
 # [Node.js](https://nodejs.org/) + [ExpressJS](http://expressjs.com/) + [Kafka](https://kafka.apache.org/) + [Mongodb](https://www.mongodb.org/)
 
+<a name="TableOfContents"></a>
+##Table of Contents
+
+1. <a href="#Setup">Setup</a>
+  * <a href="#SetupZookeeper">Zookeeper</a>
+  * <a href="#SetupKafka">Kafka</a>
+  * <a href="#SetupMongo">MongoDB</a>
+  * <a href="#SetupNode">Node</a>
+2. <a href="#Running">Running</a>
+3. <a href="#TestRequests">Test Requests</a>
+4. <a href="#SeeingData">Seeing Data</a>
+5. <a href="#ResetingData">Reseting Data</a>
+6. <a href="#MultibrokerConfiguration">Multibroker Configuration</a>
+7. <a href="#Backup">Backup Strategies</a>
+8. <a href="#TroubleShooting">Trouble Shooting</a>
+  * <a href="#TroubleShootingZK">Zookeeper</a>
+  * <a href="#TroubleShootingKafka">Kafka</a>
+  * <a href="#TroubleShootingOthers">Others</a>
+8. <a href="#DEVSTAGPROD">Multiple Environments</a>
+9. <a href="#References">References</a>
+
+
+<a name="Setup"></a>
 ## Setup
 
+<a name="SetupZookeeper"></a>
 ### Zookeeper
 
 - `bin/zookeeper-server-start.hs config/zookeeper1.properties`  
 
 This will start a Zookeeper instance running on `localhost:2181`
 
+<a name="SetupKafka"></a>
 ### Kafka
 
 - From another terminal window, start a kafka broker instance:  
@@ -30,13 +55,14 @@ Topic:test	PartitionCount:3	ReplicationFactor:1	Configs:
 	Topic: test	Partition: 2	Leader: 0	Replicas: 0	Isr: 0
 
 ```
-
+<a name="SetupMongo"></a>
 ### MongoDB
 
 - Install [MongoDb](http://docs.mongodb.org/v2.6/installation/)
 
 - Start a mongo instance: `mongod`
 
+<a name="SetupNode"></a>
 ### Node
 
 - Install [node v0.12](http://nodejs.org/download/)
@@ -45,6 +71,7 @@ Topic:test	PartitionCount:3	ReplicationFactor:1	Configs:
 
 - run `$ npm install`
 -----
+<a name="Running"></a>
 ## Running
 
 - `$ nf start`
@@ -65,12 +92,14 @@ INFO  [SessionTracker:ZooKeeperServer@347] - Expiring session 0x14ba15e9c0f0024,
 INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@494] - Processed session termination for sessionid: 0x14ba15e9c0f0024
 ```
 -----
+<a name="TestRequests"></a>
 ## Test Requests
 
 - to send messages: `$ curl -X POST http://localhost:3001/` or `$ curl -X POST http://127.0.0.1:3001/` if curl is having any [trouble with localhost](http://superuser.com/questions/830920/curl-local-host-names-on-mac-os-x-yosemite)
 
 - to perform apache benchmark `./scripts/tests/benchmark.sh`
 -----
+<a name="SeeingData"></a>
 ## Seeing Data
 
 - to read last received message by worker: `$ curl http://localhost:3001/`
@@ -89,12 +118,13 @@ Optionally you can see straight from mongo
 Or make all these requests from [Postman](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en). Just use the collection at `postman` directory.
 
 -----
+<a name="ResetingData"></a>
 ## Reseting Data
 
 To reset all kafka and zookeeper information, just delete `tmp` and `logs` directories.
 
 -----
-
+<a name="MultibrokerConfiguration"></a>
 ## Multibroker Configuration
 
 As you maybe notice in SETUP steps, we instantiated zookeeper and kafka with `zookeeper1.properties` and `server1.properties` respectively. This was not just for beautiful names.
@@ -126,14 +156,17 @@ Topic:test-replicated	PartitionCount:8	ReplicationFactor:3	Configs:
 ```
 
 -----
-## Possible backupt Strategies
+<a name="Backup"></a>
+## Possible Backup Strategies
 
 Take a better look at [SECOR - Persisting kafka logs to Amazon S3](https://github.com/pinterest/secor)  
 [This conversation](http://grokbase.com/t/kafka/users/136eqq0xdp/0-8-backup-strategy-anyone) also seems to be good
 
 -----
+<a name="TroubleShooting"></a>
 ## Trouble Shooting?
 
+<a name="TroubleShootingZK"></a>
 ### Zookeeper
 
 If you see logs like:  
@@ -149,18 +182,21 @@ You can try to figure it out by [this issue on kafka-node](https://github.com/SO
 
 Normally restarting the consumers work.
 
+<a name="TroubleShootingKafka"></a>
 ### Kafka
 
 If for any reason you close a terminal window <kbd>cmd</kdb>+<kbd>W</kbd> without terminating the kafka broker, and when you try to run it again it tells you that this port is already in use, you can shut down all brokers with:
 
 - `bin/kafka-server-stop.sh`
 
-### Other
+<a name="TroubleShootingOthers"></a>
+### Others
 
 It's always a good idea to look at the [Kafka FAQ](https://cwiki.apache.org/confluence/display/KAFKA/FAQ)
 
 ------
-## Interesting points for multiple environments (dev, stag, prod)
+<a name="DEVSTAGPROD"></a>
+## Multiple environments (dev, stag, prod)
 
 There's a npm package used on kafka-node let us see what is happening on the zookeeper.
 
@@ -183,6 +219,7 @@ And from [Zookeeper documentation](http://zookeeper.apache.org/doc/r3.3.2/api/or
 
 
 -----
+<a name="References"></a>
 ## References
 
 - [wurstmeister/storm-kafka-0.8-plus-test](https://github.com/wurstmeister/storm-kafka-0.8-plus-test)
@@ -196,3 +233,6 @@ And from [Zookeeper documentation](http://zookeeper.apache.org/doc/r3.3.2/api/or
 - [Github - kafka-nodejs](https://github.com/zubayr/kafka-nodejs)
 - [kafka configurations](https://kafka.apache.org/08/configuration.html)
 - [kafka mirrormaker](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27846330)
+
+
+<a href="#TableOfContents">Go up again :)</a>
