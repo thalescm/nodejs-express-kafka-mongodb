@@ -44,6 +44,7 @@ Topic:test	PartitionCount:3	ReplicationFactor:1	Configs:
 - Install node-foreman `$ npm install -g foreman`
 
 - run `$ npm install`
+
 -----
 ## Running
 
@@ -151,7 +152,7 @@ Normally restarting the consumers work.
 
 ### Kafka
 
-If for any reason you close a terminal window <kbd>cmd</kdb>+<kbd>W</kbd> without terminating the kafka broker, and when you try to run it again it tells you that this port is already in use, you can shut down all brokers with:
+If for any reason you close a terminal window <kbd>cmd</kbd>+<kbd>W</kbd> without terminating the kafka broker, and when you try to run it again it tells you that this port is already in use, you can shut down all brokers with:
 
 - `bin/kafka-server-stop.sh`
 
