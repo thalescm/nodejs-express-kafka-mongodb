@@ -8,12 +8,15 @@ var express = require('express'),
 
     // kafka
     kafka = require('kafka-node'),
-    client = new kafka.Client(process.env.KAFKA_URL || '192.168.59.103:2181,192.168.59.103:2182', process.env.KAFKA_PRODUCER_ID || 'kafka-node-producer', {}),
+    client = new kafka.Client(process.env.KAFKA_URL || 'localhost:2181', process.env.KAFKA_PRODUCER_ID || 'kafka-node-client-producer',  {
+      sessionTimeout: 1000 // this is just to enable multiple restarts in debug and avoid https://github.com/SOHU-Co/kafka-node/issues/90 - should be removed in PRD
+    }),
     HighLevelProducer = kafka.HighLevelProducer,
     producer = new HighLevelProducer(client);
 
 // Express setup
-app.listen(process.env.PORT || 3001);
+app.listen(process.env.PORT || 3030);
+console.log('Server Listening on port: ' + (process.env.PORT || 3030));
 
 app.post('/', function(req, res) {
 
@@ -21,7 +24,7 @@ app.post('/', function(req, res) {
 
   // sends value to kafka
   var topicMessage = {
-    topic: 'topic',
+    topic: 'test',
     messages: [
       // all messages must be string :S
       JSON.stringify({ timestamp: timestamp, rnd: Math.random() })
