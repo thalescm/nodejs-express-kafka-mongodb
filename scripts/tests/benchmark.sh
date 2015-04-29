@@ -22,7 +22,7 @@ while [ "$1" != "" ]; do
     n_requests=$1
     ;;
 
-    -c | --concurency )
+    -c | --concurency )         shift
     n_c_requests=$1
     ;;
 

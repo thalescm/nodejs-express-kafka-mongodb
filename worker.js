@@ -2,7 +2,7 @@ var moment = require('moment-timezone'),
 
     // Kafka setup
     kafka = require('kafka-node'),
-    client = new kafka.Client(process.env.KAFKA_URL || 'localhost:2181', process.env.KAFKA_CONSUMER_ID || 'test-zookeeper-down-consumer', {
+    client = new kafka.Client(process.env.KAFKA_URL || 'localhost:2181', process.env.KAFKA_CONSUMER_ID || 'kafka-node-client-consumer', {
       sessionTimeout: 1000 // this is just to enable multiple restarts in debug and avoid https://github.com/SOHU-Co/kafka-node/issues/90 - should be removed in PRD
     }),
     HighLevelConsumer = kafka.HighLevelConsumer,
@@ -18,13 +18,9 @@ var consumer = new HighLevelConsumer(
         { topic: 'test' }
     ],
     {
-      groupId: 'worker.js' // this identifies consumer and make the offset consumption scoped to this key
+      groupId: 'worker.js_0' // this identifies consumer and make the offset consumption scoped to this key
     }
 );
-
-consumer.on('ready', function() {
-  console.log('KAFKA consumer ready');
-});
 
 consumer.on('message', function (message) {
 
@@ -77,6 +73,20 @@ consumer.on('message', function (message) {
 consumer.on('error', function (err) {
   console.log('KAFKA consumer error:' + err);
 });
+
+consumer.on('rebalancing', function() {
+  console.log('KAKFA consumer is rebalancing');
+});
+
+consumer.on('rebalanced', function() {
+  console.log('KAKFA consumer rebalanced');
+});
+
+consumer.on('registered', function() {
+  console.log('KAKFA consumer registered');
+});
+
+
 
 process.on('beforeExit', function(code) {
   //force offset commit
