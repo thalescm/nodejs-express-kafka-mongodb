@@ -70,6 +70,7 @@ Topic:test	PartitionCount:3	ReplicationFactor:1	Configs:
 - Install node-foreman `$ npm install -g foreman`
 
 - run `$ npm install`
+
 -----
 <a name="Running"></a>
 ## Running
@@ -98,6 +99,7 @@ INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@494] - Processed sess
 - to send messages: `$ curl -X POST http://localhost:3001/` or `$ curl -X POST http://127.0.0.1:3001/` if curl is having any [trouble with localhost](http://superuser.com/questions/830920/curl-local-host-names-on-mac-os-x-yosemite)
 
 - to perform apache benchmark `./scripts/tests/benchmark.sh`
+
 -----
 <a name="SeeingData"></a>
 ## Seeing Data
@@ -185,7 +187,7 @@ Normally restarting the consumers work.
 <a name="TroubleShootingKafka"></a>
 ### Kafka
 
-If for any reason you close a terminal window <kbd>cmd</kdb>+<kbd>W</kbd> without terminating the kafka broker, and when you try to run it again it tells you that this port is already in use, you can shut down all brokers with:
+If for any reason you close a terminal window <kbd>cmd</kbd>+<kbd>W</kbd> without terminating the kafka broker, and when you try to run it again it tells you that this port is already in use, you can shut down all brokers with:
 
 - `bin/kafka-server-stop.sh`
 
