@@ -180,7 +180,7 @@ or Logs like (on zookeeper terminal):
 This one means that the current consumer you are trying to create already exists in the cluster.
 
 Well, I still haven't figured it out yet what those thinks actually mean and what to do with them.
-You can try to figure it out by [this issue on kafka-node](https://github.com/SOHU-Co/kafka-node/issues/90), [this article on ZK ephemeral nodes](https://www.box.com/blog/a-gotcha-when-using-zookeeper-ephemeral-nodes/), [Zookeeper documentation](http://zookeeper.apache.org/doc/r3.3.2/api/org/apache/zookeeper/ZooKeeper.html).
+You can try to figure it out by [this issue on kafka-node](https://github.com/SOHU-Co/kafka-node/issues/90), [this article on ZK ephemeral nodes](https://www.box.com/blog/a-gotcha-when-using-zookeeper-ephemeral-nodes/), [Zookeeper documentation](http://zookeeper.apache.org/doc/r3.3.2/api/org/apache/zookeeper/ZooKeeper.html) (specially [THIS](http://zookeeper.apache.org/doc/r3.3.2/api/org/apache/zookeeper/ZooKeeper.html#create(java.lang.String, byte[], java.util.List, org.apache.zookeeper.CreateMode)) method (it helps understand why and how they are generated)).
 
 Normally restarting the consumers work.
 
@@ -235,6 +235,15 @@ And from [Zookeeper documentation](http://zookeeper.apache.org/doc/r3.3.2/api/or
 - [Github - kafka-nodejs](https://github.com/zubayr/kafka-nodejs)
 - [kafka configurations](https://kafka.apache.org/08/configuration.html)
 - [kafka mirrormaker](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27846330)
+
+IMPORTANT: 
+------
+- [Zookeeper, things to avoid](http://zookeeper.apache.org/doc/r3.3.4/zookeeperAdmin.html#sc_commonProblems)
+
+------
+- [Zookeeper Administrator's Guide](http://zookeeper.apache.org/doc/trunk/zookeeperAdmin.html)
+- [Running duplicated Zookeepers](http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html#sc_RunningReplicatedZooKeeper)
+- [Zookeeper cluster setup](http://myjeeva.com/zookeeper-cluster-setup.html)
 
 
 <a href="#TableOfContents">Go up again :)</a>
