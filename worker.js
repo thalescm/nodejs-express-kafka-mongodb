@@ -2,7 +2,7 @@ var moment = require('moment-timezone'),
 
     // Kafka setup
     kafka = require('kafka-node'),
-    client = new kafka.Client(process.env.KAFKA_URL || 'localhost:2181,localhost:2183,localhost:2185/stag', process.env.KAFKA_CONSUMER_ID || 'kafka-node-client-consumer', {
+    client = new kafka.Client(process.env.KAFKA_URL || '130.211.119.190:2181/dev', process.env.KAFKA_CONSUMER_ID || 'kafka-node-client-consumer', {
       sessionTimeout: 1000 // this is just to enable multiple restarts in debug and avoid https://github.com/SOHU-Co/kafka-node/issues/90 - should be removed in PRD
     }),
     HighLevelConsumer = kafka.HighLevelConsumer,
@@ -15,7 +15,7 @@ var moment = require('moment-timezone'),
 var consumer = new HighLevelConsumer(
     client,
     [
-        { topic: 'test' }
+        { topic: 'dev' }
     ],
     {
       groupId: 'worker.js' // this identifies consumer and make the offset consumption scoped to this key
